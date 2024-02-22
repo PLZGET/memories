@@ -1,0 +1,367 @@
+@charset "utf-8";
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+
+/* === CSS 리셋 시작 === */
+
+/* === 공통 UI 시작 === */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+a {
+    outline: 0;
+    text-decoration: none;
+}
+
+img {
+    border: 0;
+}
+
+/* === CSS 리셋 종료 === */
+body {
+    font: 17px/1.4 "orbitron";
+    letter-spacing: 1px;
+    color: #ddd;
+    background: #000;
+}
+
+/*wrap 안의 video 선택*/
+.wrap > video {
+    /*화면 전체를 감쌀려면 viewport 를 100vw 로 하거나, 100%로*/
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: fixed;
+    opacity: 0.5;
+}
+
+.wrap {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    /* 마지막으로 3d 회전의 투시 시점을 부여한다 */
+    perspective: 1500px;
+    /*    위치가 겹쳐져있다. 의도되지 않았다. 가로 넓이가 600px 임으로
+    가로넓이에 해당되는 만큼 시원하게 띄엄띄엄 넣어준다.*/
+
+}
+
+/*wrap 하위의 circle 하위의 article 선택*/
+.wrap #circle article {
+    width: 100%;
+    height: 100%;
+    position: absolute; /* body, main , circle 중에 기준점이 필요하다.*/
+    top: 0;
+    left: 0;
+
+    /* article 이 곧 .face$ 이다.*/
+
+    /*765px 하면 앞에서부터 뒤가 다 보인다. 따라서 -750px를 주면 되는데
+  이렇게 하면 뒷면부터 보인다. 뒷면을 제거하고싶다면*/
+    backface-visibility: hidden;
+}
+
+/*위에 항목을 감싸주고있는 circle 선택*/
+.wrap #circle {
+    /*평면에서 시작해야한다. 면 하나로 시작한다 */
+    width: 600px;
+    height: 800px;
+    position: absolute; /* 하위 요소에 대해서 절대적인 위치의 기준점이 된다 */
+    top: 50%;
+    left: 50%;
+    margin-left: -300px;
+    margin-top: -400px;
+    /* border: 3px solid white; /* 임시 테두리이다 */
+    /* 3D 변형에 대해서 적용가능해진다 */
+    transform-style: preserve-3d;
+
+    /* 후에 추가한 도형이 돌아가는 애니메이션을 추가 */
+
+    animation: panorama-spin linear 25s infinite;
+}
+
+/* === 공통 UI 종료 === */
+
+@Keyframes panorama-spin {
+    /* 변형 transform 효과를 통해 스핀 (rotate) 을 적용 */
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+/* === face 요소 개별 제어 시작 === */
+.face1 { /* 네비게이션 페이지 */
+    /*페이지의 article 콘텐츠 작성 */
+    /*마지막으로 트렌스폼 할것이다*/
+    transform: rotateY(0deg) translateZ(-765px);
+    /* 겹쳐져있는 상태를 해결할려면 z축을 이동해야한다.*/
+
+    /*765px 하면 앞에서부터 뒤가 다 보인다. 따라서 -750px를 주면 되는데
+    이렇게 하면 뒷면부터 보인다. 뒷면을 제거하고싶다면*/
+
+
+    /*뭔가를 빠드려서 3d rotate 가 제대로 일어나지않고있다.*/
+    /*시점을 넣어야한다. 약간 아래쪽에서 또는 위쪽에서 봐줘야한다.*/
+}
+
+.face2 {
+    /*마지막으로 트렌스폼 할것이다*/
+    transform: rotateY(45deg) translateZ(-765px);
+}
+
+.face3 {
+    /*마지막으로 트렌스폼 할것이다*/
+    transform: rotateY(90deg) translateZ(-765px);
+}
+
+.face4 {
+    /*마지막으로 트렌스폼 할것이다*/
+    transform: rotateY(135deg) translateZ(-765px);
+}
+
+.face5 {
+    /*마지막으로 트렌스폼 할것이다*/
+    transform: rotateY(180deg) translateZ(-765px);
+}
+
+.face6 {
+    /*마지막으로 트렌스폼 할것이다*/
+    transform: rotateY(225deg) translateZ(-765px);
+}
+
+.face7 {
+    /*마지막으로 트렌스폼 할것이다*/
+    transform: rotateY(270deg) translateZ(-765px);
+}
+
+.face8 { /* 날씨 */
+    /*마지막으로 트렌스폼 할것이다*/
+    transform: rotateY(315deg) translateZ(-765px);
+}
+
+/* === face 요소 개별 제어 종료 === */
+
+/* === .face1 내부요소 제어 시작 === */
+
+.face1 .inner > nav div {
+    width: 290px;
+    height: 254px;
+    float: left;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+
+.face1 .inner > nav div p i {
+    transition: all 500ms;
+    opacity: 0.7;
+    font-size: 100px;
+}
+
+.face1 .inner > nav div h2 {
+    margin-top: 20px;
+    letter-spacing: 2px;
+    transition: all 500ms;
+}
+
+.face1 .inner > nav div:nth-of-type(odd) {
+    margin-right: 20px;
+}
+
+
+/* === .face2 내부요소 제어 시작 === */
+
+/* === .face3 내부요소 제어 시작 === */
+
+/* === .face4 내부요소 제어 시작 === */
+
+/* === .face5 내부요소 제어 시작 === */
+
+/* === .face6 내부요소 제어 시작 === */
+
+/* === .face7 내부요소 제어 시작 === */
+
+.wrap #circle article h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 30px;
+    opacity: 0;
+    transition: all 500ms;
+}
+
+.wrap #circle article:hover h1 {
+    opacity: 1;
+    top: -60px;
+}
+
+.wrap #circle article .inner > div:hover i, .inner > nav > div:hover i { /* 세분화를 거쳤다. */
+    /* 호버링 대상을 세분화하면 더 이쁠것 */
+    color: mintcream;
+    text-shadow: 0 0 10px #69f3e5;
+    transform: scale(1.15);
+}
+
+.wrap #circle article .inner > div:hover h2, .inner > nav > div:hover h2 {
+    color: mintcream;
+    text-shadow: 0 0 10px #69f3e5;
+}
+
+.wrap #circle article .inner > div, .inner > nav > div {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 50px;
+    position: relative;
+    opacity: 0.7;
+    overflow: hidden;
+    transition: all 500ms;
+}
+
+.wrap #circle article .inner > div {
+
+}
+
+.wrap #circle article .inner {
+    width: 100%;
+    height: 100%;
+}
+
+/*호버링 대상을 세분화*/
+.wrap #circle article .inner > div:hover, .inner > nav > div:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+
+/* === .face8 에 대한 작업 === */
+#circle .face8 .inner > div:nth-of-type(1) {
+    /*점수가 낮아서 해당 스타일들이 반영되지않고있다. 해결법은 총점을 높이는 것이다.*/
+    /*.face8 .inner > div:nth-of-type(1) -> #circle .face8 .inner > div:nth-of-type(1)*/
+    /* 아이디를 넣어주면 거진 다 해결된다. */
+    width: 100%;
+    height: 380px;
+    margin-bottom: 20px;
+
+}
+
+/*h2 , span , i : 내부요소들*/
+
+#circle .face8 .inner > div:nth-of-type(2) {
+    width: 290px;
+    height: 400px;
+    float: left;
+    margin-right: 20px;
+}
+
+/*h3, p , i : 내부요소들*/
+
+#circle .face8 .inner > div:nth-of-type(3) {
+    width: 290px;
+    height: 400px;
+    float: left;
+}
+
+/*h3, p , i : 내부요소들*/
+
+/* 1st type 내부요소 */
+#circle .face8 .inner > div:nth-of-type(1) h2 {
+}
+
+#circle .face8 .inner > div:nth-of-type(1) span {
+    font-size: 120px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 60px; /* 아래로 정렬 */
+    left: 50px /* 전역으로 패딩을 설정해놔서 당장 변하는게 없지만 후에 사용할 지도 모르니 선언*/
+}
+
+#circle .face8 .inner > div:nth-of-type(1) i {
+    position: absolute; /* 이렇게 span 과 i에 absolute를 부여하면 두 요소가 겹치게된다 */
+    /* 겹치게 만든 후에 구체적인 위치를 지정할 수 있게 한다 */
+    font-size: 100px;
+    color: lightcyan;
+    bottom: 160px;
+    right: 50px;
+    opacity: 0.8;
+    transform: scale(1.05);
+    transition: all 500ms;
+}
+
+/* 2nd type 내부요소 */
+#circle .face8 .inner > div:nth-of-type(2) h3 {
+}
+
+#circle .face8 .inner > div:nth-of-type(2) p {
+}
+
+#circle .face8 .inner > div:nth-of-type(2) i {
+}
+
+/* 3rd type 내부요소 */
+#circle .face8 .inner > div:nth-of-type(3) h3 {
+}
+
+#circle .face8 .inner > div:nth-of-type(3) p {
+}
+
+#circle .face8 .inner > div:nth-of-type(3) i {
+}
+
+
+/* .face5 내부요소 */
+
+/* h2 , .pic , img * 3 , .reflection */
+
+
+#circle .face5 .inner > div h2 {
+    font-size: 2em;
+    font-weight: bolder;
+    margin-block-start: 0.1em;
+    margin-block-end: 0.5em;
+}
+
+#circle .face5 .inner > div .pic {
+    width: 100%;
+    height: 250px;
+    /*background short-hand 적용 */
+    background: rgba(0, 0, 0, 0.1) url("../img/sora_cloud.png") no-repeat center center/cover;
+    margin-bottom: 50px;
+}
+
+/* 비워놓음 . 여백, 레이아웃, 외부후광 등 외의 다른 효과는 불필요해야함!*/
+#circle .face5 .inner > div .pic {
+    /*이미지를 활용해서 화면처리를 할 경우, gif , 멀티레이어 처리가 이미 적용된 결과물*/
+    /*을 가져오지 않으면 디자이너한테 다시 요청합니다.*/
+    /* 특정 용도의 그냥 표시하는 이미지는 비워놓는다! */
+}
+
+#circle .face5 .inner > div .reflection {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    transition: all 500ms;
+    opacity: 0.7;
+    overflow: visible;
+}
+
+#circle .face5 .inner > div img:nth-of-type(1) {
+    margin-bottom: 40px;
+}
+
+#circle .face5:hover .inner > div .reflection {
+    top: -50%;
+}
